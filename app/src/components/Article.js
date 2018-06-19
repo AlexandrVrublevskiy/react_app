@@ -16,6 +16,14 @@ class Article extends Component{
    console.log('---', 'mounting')
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.defaultOpens !== this.props.defaultOpens) this.setState({
+        isOpen: nextProps.defaultOpens
+      })
+    
+  }
+  
+
   render(){
     //console.log('---', this.props);
     const {article} = this.props;
