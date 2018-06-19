@@ -25,7 +25,7 @@ class Article extends Component{
             <div className='card-header'> 
             <h2>
                 {article.title}
-                <button onClick = {this.handleClick} className='btn btn-secondary btn-lg float-right' style = {{transition: '3s'}}>
+                <button onClick = {this.handleClick} className='btn btn-outline-secondary btn-lg float-right' style = {{transition: '0.2s'}}>
                 {this.state.isOpen ? 'close' : 'open'}
                 </button>
             </h2>
