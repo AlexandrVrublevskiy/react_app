@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import ArticleList from './ArticleList';
 import articles from './fixturec';
 import 'bootstrap/dist/css/bootstrap.css'
 
-class App extends Component {
+class App extends PureComponent {
     state = {
         reverted: false
     }
-    articles = articles.slice()
     render(){
+        console.log('---', 'render', this.state, articles.map(article => article.id))
         return (
         <div className = 'container'>
         <div className='jumbotron'>
@@ -17,16 +17,14 @@ class App extends Component {
                 <button className='btn' onClick = {this.revert}>Revert</button>
             </h1>
         </div>
-            <ArticleList articles = {this.articles}/>
+            <ArticleList articles = {this.state.reverted ? articles.slice().reverse() : articles}/>
         </div>
         )
         
     }
         revert=()=> {
-            console.log('---', 'click')
-            this.articles.reverse()
             this.setState({
-            reverted: !this.state.reverted
+             reverted: !this.state.reverted
         })
     }
 }
