@@ -8,7 +8,6 @@ class Article extends PureComponent{
   constructor(props){
     super(props)
     this.state = {
-      isOpen: props.defaultOpens,
       count: 0
     }
   }
@@ -17,29 +16,29 @@ class Article extends PureComponent{
    console.log('---', 'mounting')
   }
 
-  componentWillReceiveProps(nextProps) {
+  /*componentWillReceiveProps(nextProps) {
     //console.log('---', 'will recive props')
     if(nextProps.defaultOpens !== this.props.defaultOpens) this.setState({
         isOpen: nextProps.defaultOpens
       }) 
   }
-  /*componentWillUpdate = (nextProps, nextState) => {
+  componentWillUpdate = (nextProps, nextState) => {
     
     console.log('---', 'will update')
   }
   */
       render(){
         //console.log('---', this.props);
-        const {article} = this.props;
-        const body = this.state.isOpen && <section className='card-text'>{article.text}</section>;
+        const {article, isOpen, onButtonClick} = this.props;
+        const body = isOpen && <section className='card-text'>{article.text}</section>;
           return(
           <div className = 'card mx-auto' style = {{width: '70%'}} >
                 <div className='card-header'> 
                 <h2 onClick ={this.incrementCount}>
-                    {article.title}
-                    cliced {this.state.count}
-                    <button onClick = {this.handleClick} className='btn btn-outline-secondary btn-lg float-right' style = {{transition: '0.2s'}}>
-                    {this.state.isOpen ? 'close' : 'open'}
+                    {article.title} <br/>
+                    clicked {this.state.count}
+                    <button onClick = {onButtonClick} className='btn btn-outline-secondary btn-lg float-right' style = {{transition: '0.2s'}}>
+                    {isOpen ? 'close' : 'open'}
                     </button>
                 </h2>
                 </div>
@@ -58,13 +57,6 @@ class Article extends PureComponent{
           count: this.state.count + 1
         })
       }
-      
-    handleClick = () => {
-    //console.log('---', 'click')
-    this.setState ({
-      isOpen: !this.state.isOpen
-    })
-  }
 }
 
 export default Article
